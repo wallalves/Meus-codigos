@@ -1,29 +1,24 @@
 def check_cpf(cpf):
 
+    #inciando as variaveis de somatorio
     soma_a = soma_b = 0
 
-    # multiplicação termo a termo e somatorio do primeiro digito
+    # Calcula o primeiro digito verificador 
+                
     for n in range(9):
         soma_a += ((n+1)*int(cpf[n]))
+    check_a = "0" if (soma_a%11 == 10) else str(soma_a%11)
 
-    # calculando primeiro digito verificador
-    resto_a = "0" if (soma_a%11 == 10) else str(soma_a%11)
-    
-    # verificando se o primeiro digito está correto
-    if(resto_a != cpf[9]):
-        return False
-    
-    # multiplicação termo a termo e somatorio do segundo digito
+    # Calcula o segundo digito verificador
     for m in range(10):
-        soma_b += ((m)*int(cpf[m]))
+            soma_b += ((m)*int(cpf[m]))
+    check_b = "0" if (soma_b%11 == 10) else str(soma_b%11)
 
-    # calculando primeiro digito verificador
-    resto_b = "0" if (soma_b%11 == 10) else str(soma_b%11)
-    # verificando se o segundo digito está correto
-    if(resto_a != cpf[10]):
+    # Verifica se os dois digitos estão iguais aos calculados
+    if(check_a == cpf[9] and check_b == cpf[10]):
+        return True
+    else:
         return False
-        
-    return True
 
 meucpf = str(input("Digite aqui seu cpf ( apenas numeros)"))
 
